@@ -13,13 +13,13 @@ public class ManageCalendar {
 
     public int getDate(int day) {
         int visitDay = day;
-        if(weekday.contains(visitDay)){
+        if (weekday.contains(visitDay)) {
             return 1;
         }
-        if(weekend.contains(visitDay)) {
+        if (weekend.contains(visitDay)) {
             return 2;
         }
-        if(specialDay.contains(visitDay)) {
+        if (specialDay.contains(visitDay)) {
             return 3;
         }
         return 0;
