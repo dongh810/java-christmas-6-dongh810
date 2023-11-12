@@ -3,6 +3,7 @@ package christmas;
 import christmas.domain.ManageCalendar;
 import christmas.domain.ManageDiscount;
 import christmas.domain.ManageMenu;
+import christmas.domain.ManagePrice;
 import christmas.funtion.InputView;
 import christmas.funtion.OutputView;
 
@@ -13,6 +14,7 @@ public class Christmas {
     ManageMenu manageMenu = new ManageMenu();
     ManageCalendar manageCalendar = new ManageCalendar();
     ManageDiscount manageDiscount = new ManageDiscount();
+    ManagePrice managePrice = new ManagePrice();
     String orderMenu;
     int date;
 
@@ -23,13 +25,16 @@ public class Christmas {
         date = inputView.readDate();
         outputView.printMenu();
         orderMenu = inputView.readMenu();
-        manageMenu.countEachMenuForDiscount(orderMenu);
         outputView.printEventPreview(date);
     }
 
     public void printResult() {
-        outputView.printLineChange();
-        outputView.printOrderMenu();
-        manageMenu.printOrderMenu(orderMenu);
+        outputView.printOrderMenu(orderMenu);
+        outputView.printBeforDiscount(orderMenu);
+        outputView.printGift(orderMenu);
+        outputView.printEventThings(manageCalendar.getDate(date),orderMenu,date);
+        outputView.printTotalDiscount(manageCalendar.getDate(date),orderMenu,date);
+        outputView.printTotalPay(manageCalendar.getDate(date),orderMenu,date);
+        outputView.printBedge(manageCalendar.getDate(date),orderMenu,date);
     }
 }
