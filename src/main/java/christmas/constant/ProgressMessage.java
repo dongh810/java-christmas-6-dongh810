@@ -22,5 +22,5 @@ public class ProgressMessage {
 
     public static final String PRINT_AFTER_DISCOUNT = "<할인 후 예상 결제 금액>";
 
-    public static final String EVENT_BADGE = "<12월 이벤트 베지>";
+    public static final String EVENT_BADGE = "<12월 이벤트 배지>";
 }
