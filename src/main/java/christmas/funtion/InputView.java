@@ -13,6 +13,4 @@ public class InputView {
         String getMenu = Console.readLine();
         return getMenu;
     }
-
-
 }
