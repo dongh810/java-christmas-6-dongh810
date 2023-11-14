@@ -10,25 +10,49 @@ public class ManageDiscount {
     public List<Integer> setAllDiscount(int divisionNum, String inputMenu) {
         int dessertNumber = manageMenu.getAllDessertCount(inputMenu);
         int mainNumber = manageMenu.getAllMainCount(inputMenu);
-        Integer weekdayDiscount = 0;
-        Integer weekendDiscount = 0;
-        Integer specialDiscount = 0;
-        List<Integer> allDiscount = new ArrayList<>();
+        List<Integer> allDiscount = divisionNumCondition(dessertNumber, mainNumber, divisionNum);
+        return allDiscount;
+    }
+
+    private List<Integer> divisionNumCondition(int dessertNum, int mainNum, int divisionNum) {
+        List<Integer> discount = new ArrayList<>();
         if (divisionNum == 1) {
-            weekdayDiscount += dessertNumber * 2023;
-            allDiscount.add(weekdayDiscount);
+            discount = firstDivision(dessertNum);
         }
         if (divisionNum == 2) {
-            weekendDiscount += mainNumber * 2023;
-            allDiscount.add(weekendDiscount);
+            discount = secondDivision(mainNum);
         }
         if (divisionNum == 3) {
-            weekdayDiscount += dessertNumber * 2023;
-            specialDiscount += 1000;
-            allDiscount.add(weekdayDiscount);
-            allDiscount.add(specialDiscount);
+            discount = thirdDivision(dessertNum);
         }
-        return allDiscount;
+        return discount;
+    }
+
+    private List<Integer> firstDivision(int dessertNum) {
+        List<Integer> discount = new ArrayList<>();
+        Integer weekdayDiscount = 0;
+        weekdayDiscount += dessertNum * 2023;
+        discount.add(weekdayDiscount);
+        return discount;
+    }
+
+    private List<Integer> secondDivision(int mainNum) {
+        List<Integer> discount = new ArrayList<>();
+        Integer weekendDiscount = 0;
+        weekendDiscount += mainNum * 2023;
+        discount.add(weekendDiscount);
+        return discount;
+    }
+
+    private List<Integer> thirdDivision(int dessertNum) {
+        List<Integer> discount = new ArrayList<>();
+        Integer specialDiscount = 0;
+        Integer weekdayDiscount = 0;
+        weekdayDiscount += dessertNum * 2023;
+        specialDiscount += 1000;
+        discount.add(weekdayDiscount);
+        discount.add(specialDiscount);
+        return discount;
     }
 
     public int getDayDiscount(int day) {
@@ -61,10 +85,12 @@ public class ManageDiscount {
 
     public int getTotalDiscount(int divisionNum, String inputMenu, int day) {
         List<Integer> discount = getAllDiscount(divisionNum, inputMenu, day);
+        int dayDiscount = getDayDiscount(day);
         int totalDiscount = 0;
         for (int i = 0; i < discount.size(); i++) {
             totalDiscount += discount.get(i);
         }
+        totalDiscount += dayDiscount;
         return totalDiscount;
     }
 }
