@@ -13,17 +13,6 @@ public class ManageMenu {
     HashMap<String, Integer> main = menu.setMain();
     HashMap<String, Integer> dessert = menu.setDessert();
 
-    public void validateMaxOrderCount(String inputMenu) {
-        String[] split = inputMenu.split(",");
-        List<String> menuString = sortMenu(split);
-        List<String> menuCountString = getMenuCount(split);
-        int allMenuCount = 0;
-        for (int i = 0; i < menuCountString.size(); i++) {
-            allMenuCount += Integer.parseInt(menuCountString.get(i));
-        }
-        // validationFunction.validateMaxOrderCount 최대주문갯수 검증
-    }
-
     public List<String> sortMenu(String[] menu) {
         String[] empty = new String[menu.length];
         List<String> menuString = new ArrayList<>();
